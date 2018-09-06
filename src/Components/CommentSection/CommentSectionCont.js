@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
 import CommentInput from './CommentInput';
+import Heart from '../../assets/heart.svg'
 
 class CommentSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       comments: props.comments,
-      comment: ""
+      newcomment: "",
+      likes: 0
     };
   }
 
-  commentHandler = (e) => {
+  commentHandler = e => {
     this.setState({comment: e.target.value});
   };
 
@@ -28,9 +30,15 @@ class CommentSection extends React.Component {
     this.setState({ comments, comment: ""});
   }
 
+  likeCounter= e => {
+    this.setState({likes: this.state.likes + 1})
+  }
+
   render() {
     return (
       <div>
+        {this.state.likes}
+        <img onClick={this.likeCounter} className='heart' src={Heart} alt="heart" />
         {this.state.comments.map((c, i) => <Comment key={i} comment={c} />)}
         <CommentInput 
           submitHandler={this.commentSubmit}
