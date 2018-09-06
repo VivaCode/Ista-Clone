@@ -1,6 +1,7 @@
 import React from "react";
 import dummyData from '../../dummyData';
 import PostContainer from './PostContainer';
+import SearchBar from "../SearchBar/SearchBar";
 
 
     class PostsPage extends React.Component {
@@ -34,7 +35,10 @@ import PostContainer from './PostContainer';
         
         render() {
             return (
-                <PostContainer data={this.state.data} />
+                <div>
+                    <SearchBar />
+                    <PostContainer data={this.state.data} />
+                </div>
             );
         }
         
